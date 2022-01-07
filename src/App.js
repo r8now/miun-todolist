@@ -5,30 +5,30 @@ import Axios from "axios";
 
 function App() {
 
-  const [name, setName] = useState("");
-  const [age, setAge] = useState(0);
-  const [listOfFriends, setListOfFriends] = useState([]);
+  const [todo, setTodo] = useState("");
+  const [time, setTime] = useState(0);
+  const [listOfTodos, setListOfTodos] = useState([]);
 
-  const addFriend = () => { alert(name + age);
-    Axios.post('https://hosein-mern.herokuapp.com/addfriend', {name: name, age: age,
+  const addTodo = () => { alert(todo + time);
+    Axios.post('https://hosein-mern.herokuapp.com/addtodo', {todo: todo, time: time,
   }).then((response)=> {
-    setListOfFriends([...listOfFriends, {_id: response.data._id, name: name, age: age}]);
+    setListOfTodos([...listOfTodos, {_id: response.data._id, todo: todo, time: time}]);
   })
   };
 
-  const updateFriend = (id) => {
-    const newAge = prompt("Enter new age")
+  const updateTodo = (id) => {
+    const newTime = prompt("Enter new Time")
 
-    Axios.put('https://hosein-mern.herokuapp.com/update',{newAge: newAge, id: id}).then(() => {
-      setListOfFriends(listOfFriends.map((val) => {
-        return val._id == id ? { _id: id, name: val.name, age: newAge} : val;
+    Axios.put('https://hosein-mern.herokuapp.com/update',{newTime: newTime, id: id}).then(() => {
+      setListOfTodos(listOfTodos.map((val) => {
+        return val._id === id ? { _id: id, todo: val.todo, time: newTime} : val;
       }))
     })
   };
 
-  const deleteFriend = (id) => {
-    Axios.delete(`https://hosein-mern.herokuapp.com/delete/${id}`).then(() => {setListOfFriends(listOfFriends.filter((val)=> {
-      return val._id != id;
+  const deleteTodo = (id) => {
+    Axios.delete(`https://hosein-mern.herokuapp.com/delete/${id}`).then(() => {setListOfTodos(listOfTodos.filter((val)=> {
+      return val._id !== id;
     })
     
     );
@@ -37,9 +37,7 @@ function App() {
 
   useEffect(() => { 
     Axios.get("https://hosein-mern.herokuapp.com/read").then((response) => {
-      setListOfFriends(response.data);
-     // const update = prompt("Enter value");
-    //   console.log(update);
+      setListOfTodos(response.data);
     }).catch(() => { console.log("Error");
   });
 }, []);
@@ -50,29 +48,30 @@ function App() {
     <div className="App">
      <div className="inputs">
 
-      <input type="text" placeholder="What to do..." onChange={ (event) => {setName( event.target.value)}} />
-      <input type="number" placeholder="Minutes to finish" onChange={ (event) => {setAge(event.target.value)}} />
-      <button onClick={addFriend}>Add todo</button>
+      <input type="text" placeholder="What to do..." onChange={ (event) => {setTodo( event.target.value)}} />
+      <input type="number" placeholder="Minutes to finish" onChange={ (event) => {setTime(event.target.value)}} />
+      <button onClick={addTodo}>Add todo</button>
       </div>
 
-<div className="listOfFriends">
-    {listOfFriends.map((val) => {
+<div className="listOfTodos">
+    {listOfTodos.map((val) => {
       return ( 
-      <div className="friendContainer">
-      <div className="friend">
+      <div className="todoContainer">
+      <div className="todos">
      
-        <h3>Name: {val.name} </h3>
-        <h3>Age: {val.age} </h3>
+     
+   
+
+        <h3 className="todo">Todo: {val.todo} </h3> 
+        <h3 className="time">Time: {val.time} </h3>
+       
         
         </div>
        
-        <button onClick={()=>{updateFriend(val._id)}}>Uppdatera</button>
-        <button className="removeButton"  onClick={()=>{deleteFriend(val._id)}}>X</button>
+        <button className="updateButton" onClick={()=>{updateTodo(val._id)}}>Uppdatera</button>
+        <button className="removeButton"  onClick={()=>{deleteTodo(val._id)}}>X</button>
         
-      
-        
-      
-        </div>
+      </div>
      
   ); 
 

@@ -1,4 +1,4 @@
-.App {
+.App{
   display: flex;
 
   height: 100vh;
@@ -10,14 +10,14 @@ body{
   padding: 0;
 }
 
- .inputs {
+ .inputs{
    height: 400px;
    width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: blanchedalmond;
+  background-color: #FFD500;
 
  }
 
@@ -34,17 +34,15 @@ body{
    border: none;
    width: 150px;
    height: 50px;
-   background-color: rgb(243, 188, 105);
+   background-color: rgb(236, 151, 24);
    color: white;
    border-radius: 10px;
    font-size: 15px;
 
-  
-
- }
+}
 
  button:hover {
-   background-color:rgb(240, 168, 61);
+  background-color:rgb(165, 109, 25);
   cursor: pointer;
  }
 
@@ -55,33 +53,37 @@ body{
    flex-direction: column;
    margin-top: 20px;
  }
-  .friendContainer{
+  .todoContainer{
   display: flex;
   flex-direction: row;
   margin: 10px;
+  justify-content: center;
+  align-items: center;
   font-family:'Curier New', Courier, monospace;
+ 
 
 }
- .friend {
+ .todos {
    width: 400px;
    height: 60px;
-   background-color: rgb(240, 168, 61);
+   background-color: #0b7fd3;
    color: white;
    font-family:'Curier New', Courier, monospace;
    display: flex;
-   margin: 10px;
+
+ 
 
  }
 
- .friend h3 {
+ .todos h3 {
    margin-left: 15px;
  }
 
- .friendContainer button {
+ .todoContainer button {
    width: 80px;
    height: 60px;
    border: 2px solid black;
-   background-color: rgb(240, 168, 61);
+   background-color: #1072B9;
    color: white;
    font-family:'Curier New', Courier, monospace;
 
@@ -92,3 +94,19 @@ body{
    
  }
 
+ .removeButton:hover{
+  border-left: none;
+  background-color: red;
+}
+
+.updateButton:hover{
+  border-left: none;
+  background-color: green;
+}
+
+.time{
+  color: black;
+ margin-left: 50px;
+ padding-left: 50px;
+ 
+}
